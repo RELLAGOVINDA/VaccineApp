@@ -7,7 +7,7 @@ import com.tap.vaccination.entity.MemberTableEntity;
 public interface AddMemberDAO {
 	boolean saveMemberEntity(MemberTableEntity memberTableEntity);
 	List<MemberTableEntity> getAll(String email);
-	boolean updateMemberCountByEmail(String email);
+	boolean updateMemberCountByEmail(String email,int count);
 	int getMemberCountByEmail(String email);
 	MemberTableEntity getMemberEntityByIdProofNumber(String idProofNumber);
 	boolean updateMemberEntity(MemberTableEntity memberTableEntity);
