@@ -69,7 +69,7 @@ public class AddMemberDAOImpl implements AddMemberDAO{
 		return list;
 	}
 	
-	public boolean updateMemberCountByEmail(String email) {
+	public boolean updateMemberCountByEmail(String email,int count) {
 		Session session = null;
 		Transaction transaction = null;
 		Query query = null;
@@ -79,7 +79,7 @@ public class AddMemberDAOImpl implements AddMemberDAO{
 			transaction = session.beginTransaction();
 			query = session.createQuery("from RegisterEntity  where email='"+email+"'");
 			RegisterEntity entity = (RegisterEntity)query.uniqueResult();
-			entity.setMemberCount(entity.getMemberCount()+1);
+			entity.setMemberCount(entity.getMemberCount()+count);
 			transaction.commit();
 			isUpdate = true;
 			return isUpdate;
