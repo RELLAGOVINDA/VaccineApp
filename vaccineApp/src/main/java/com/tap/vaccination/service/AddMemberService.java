@@ -51,7 +51,7 @@ public class AddMemberService {
 		
 		if(addMemberDAO.getMemberCountByEmail(LoginController.email)<4) {
 			if(addMemberDAO.saveMemberEntity(entity)) {
-				addMemberDAO.updateMemberCountByEmail(entity.getUserEmail());
+				addMemberDAO.updateMemberCountByEmail(entity.getUserEmail(),1);
 				isDataSave = true;
 				return isDataSave;
 			}
@@ -79,8 +79,15 @@ public class AddMemberService {
 		return addMemberDAO.updateMemberEntity(entity);
 	}
 	
-	public int deleteMemberEntityByIdNumber(String idProofNumber) {
-		return addMemberDAO.deleteMemberEntityByIdNumber(idProofNumber);
+	public boolean deleteMemberEntityByIdNumber(String idProofNumber) {
+		boolean isUpdate = false;
+		if(addMemberDAO.deleteMemberEntityByIdNumber(idProofNumber)== 1) {
+			isUpdate = addMemberDAO.updateMemberCountByEmail(LoginController.email, -1);
+			isUpdate = true;
+			return isUpdate;
+		}
+		
+		return  isUpdate;
 	}
 	
 	
